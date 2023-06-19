@@ -13,25 +13,40 @@ const matches = {
 *This function takes a book object as input and creates an HTML element for the book. 
 *It returns a button element with the book's image, title, and author information.
 */
-function BookElement({ author, id, image, title }) {
-    const element = document.createElement('button');
-    element.classList = 'preview';
-    element.setAttribute('data-preview', id);
+function BookElement(book) {
+    const { author, id, image, title, description } = book;
+    const element = document.createElement('div');
+    element.classList.add('book-preview',);
+    element.setAttribute ('book-preview', id);
 
-    element.innerHTML = `
-    <img
-      class="preview__image"
-      src="${image}"
-    />
+    const imageElement = document.createElement('img');
+    imageElement.classList.add('book-preview__image');
+    imageElement.src = image;
+    element.appendChild(imageElement);
+
+    const infoElement = document.createElement('div');
+    infoElement.classList.add('book-preview__info');
+
+    const titleElement = document.createElement('h3');
+    titleElement.classList.add('book-preview__title');
+    titleElement.textContent = title;
+    infoElement.appendChild(titleElement);
+
+    const authorElement = document.createElement('div');
+    authorElement.classList.add('book-preview__author');
+    authorElement.textContent = authors[author];
+    infoElement.appendChild(authorElement);
+
+    const descriptionElement = document.createElement('div');
+    descriptionElement.classList.add('book-preview__description');
+    descriptionElement.textContent = description;
+    infoElement.appendChild(descriptionElement);
+
+    element.appendChild(infoElement);
     
-    <div class="preview__info">
-      <h3 class="preview__title">${title}</h3>
-      <div class="preview__author">${authors[author]}</div>
-    </div>
-  `;
-
     return element;
-}
+  }
+  
 
 //Update functions:
 //Updates the text and disabled state of the "Show more" button based on the remaining books to be displayed.
