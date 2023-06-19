@@ -8,47 +8,63 @@ const matches = {
     data: books,
 };
 
-//created 'BookElement' function
-/*
-*This function takes a book object as input and creates an HTML element for the book. 
-*It returns a button element with the book's image, title, and author information.
-*/
-function BookElement(book) {
-    const { author, id, image, title, description } = book;
-    const element = document.createElement('div');
-    element.classList.add('book-preview',);
-    element.setAttribute ('book-preview', id);
+//'BookElementFactory' FUNCTION
+// the 'BookElement' function creates individual DOM elements using document.createElement and appends them to the element container. 
 
-    const imageElement = document.createElement('img');
-    imageElement.classList.add('book-preview__image');
-    imageElement.src = image;
-    element.appendChild(imageElement);
+// 'BookElementFactory' function serves as the factory function. It encapsulates the 'BookElement' function and returns it as a closure. 
+function BookElementFactory() {
+    function BookElement({ author, id, image, title }) {
+        const element = document.createElement('button');
+        element.classList = 'preview';
+        element.setAttribute('data-preview', id);
 
-    const infoElement = document.createElement('div');
-    infoElement.classList.add('book-preview__info');
+        /*
+        *The book's image is represented by an img element (imgElement). It is created using document.createElement('img'), 
+        *and the preview__image class is assigned to it.
+        * Then the img element is appended as a child to the book element. 
+        */
+        const imgElement = document.createElement('img');
+        imgElement.classList = 'preview__image';
+        imgElement.src = image;
+        element.appendChild(imgElement);
 
-    const titleElement = document.createElement('h3');
-    titleElement.classList.add('book-preview__title');
-    titleElement.textContent = title;
-    infoElement.appendChild(titleElement);
+        const infoElement = document.createElement('div');
+        infoElement.classList = 'preview__info';
 
-    const authorElement = document.createElement('div');
-    authorElement.classList.add('book-preview__author');
-    authorElement.textContent = authors[author];
-    infoElement.appendChild(authorElement);
+        const titleElement = document.createElement('h3');
+        titleElement.classList = 'preview__title';
+        titleElement.innerText = title;
+        infoElement.appendChild(titleElement);
 
-    const descriptionElement = document.createElement('div');
-    descriptionElement.classList.add('book-preview__description');
-    descriptionElement.textContent = description;
-    infoElement.appendChild(descriptionElement);
+        const authorElement = document.createElement('div');
+        authorElement.classList = 'preview__author';
+        authorElement.innerText = authors[author];
+        infoElement.appendChild(authorElement);
 
-    element.appendChild(infoElement);
-    
-    return element;
-  }
-  
+        element.appendChild(infoElement);
 
-//Update functions:
+        return element;
+    }
+
+    return BookElement;
+}
+
+// Usage
+const BookElement = BookElementFactory();
+const book = {
+    author: 'authorId',
+    id: 'bookId',
+    image: 'book.jpg',
+    title: 'Book Title',
+};
+
+//'BookElement' factory function is used to create a book element by passing the 'book' object as an argument. 
+const bookElement = BookElement(book);
+console.log(bookElement);
+// Output: <button class="preview" data-preview="bookId"><img class="preview__image" src="book.jpg"><div class="preview__info"><h3 class="preview__title">Book Title</h3><div class="preview__author">Author Name</div></div></button>  
+
+
+//UPDATE FUNCTIONS:
 //Updates the text and disabled state of the "Show more" button based on the remaining books to be displayed.
 function updateListButton() {
     const remaining = matches.data.length - page.number * BOOKS_PER_PAGE;
@@ -90,7 +106,7 @@ function updateList() {
 
 
 
-//Event handler functions:
+//EVENT HANDLER FUNCTIONS:
 //Handles the click event on the "Show more" button to load and display the next set of books.
 function handleListButtonClick() {
     page.number += 1;
