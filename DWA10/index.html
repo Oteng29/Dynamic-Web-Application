@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link src="./styles.css" rel="stylesheet" href="./node_modules/@shoelace-style/shoelace/dist/shoelace/shoelace.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.5.0/cdn/themes/light.css" />
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.5.0/cdn/shoelace-autoloader.js"></script>
+
+    <title>Tally App</title>
+    <link rel="stylesheet" media="(prefers-color-scheme:light)"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.5.0/cdn/themes/light.css" />
+    <link rel="stylesheet" media="(prefers-color-scheme:dark)"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.5.0/cdn/themes/dark.css"
+        onload="document.documentElement.classList.add('sl-theme-dark');" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    <script src="./scripts.js"></script>
+
+</head>
+<header class="header">
+    <h1 class="header_title" >Tally App</h1>
+</header>
+
+<body>
+    <main class="counter">
+        <div class="counter_actions">
+            <sl-button type="primary" @click="${decrement}" variant="default" size="medium" data-optional="" data-valid="" data-user-valid="">Decrement</sl-button>
+            <sl-button type="primary" @click="${increment}" variant="default" size="medium" data-optional="" data-valid="" data-user-valid="">Increment</sl-button>
+        </div>
+    </main>
+    <h2>Count: </h2>
+    <input class="counter_value" data-key="number" readonly value="0">
+</body>
+    
+</html>
