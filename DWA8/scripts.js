@@ -8,59 +8,36 @@ const matches = {
     data: books,
 };
 
-//'BookElementFactory' FUNCTION
-// the 'BookElement' function creates individual DOM elements using document.createElement and appends them to the element container. 
-
-// 'BookElementFactory' function serves as the factory function. It encapsulates the 'BookElement' function and returns it as a closure. 
 function BookElementFactory() {
-
-    const showPreview = (author, id, image, title) => {  
+    function BookElement({ author, id, image, title }) {
         const element = document.createElement('button');
         element.classList = 'preview';
         element.setAttribute('data-preview', id);
-
         /*
-        *The book's image is represented by an img element (imgElement). It is created using document.createElement('img'), 
+        *The book's image is represented by an img element (imgElement). It is created using document.createElement('img'),
         *and the preview__image class is assigned to it.
-        * Then the img element is appended as a child to the book element. 
+        * Then the img element is appended as a child to the book element.
         */
         const imgElement = document.createElement('img');
         imgElement.classList = 'preview__image';
         imgElement.src = image;
         element.appendChild(imgElement);
-
         const infoElement = document.createElement('div');
         infoElement.classList = 'preview__info';
-
         const titleElement = document.createElement('h3');
         titleElement.classList = 'preview__title';
         titleElement.innerText = title;
         infoElement.appendChild(titleElement);
-
         const authorElement = document.createElement('div');
         authorElement.classList = 'preview__author';
         authorElement.innerText = authors[author];
         infoElement.appendChild(authorElement);
-
         element.appendChild(infoElement);
-
         return element;
     }
-    const hidePreview = () => {
-        document.querySelector('[data-list-close]').addEventListener('click', () => {
-            document.querySelector('[data-list-active]').open = false
-        })
-    }
-    
-    const previewElement = {
-        showPreview,
-        hidePreview,
-    }
-    return previewElement
+    return BookElement;
 }
-
 // Usage
-//the 'BookElement' component and specification of the properties of a book to be rendered by that component.
 const BookElement = BookElementFactory();
 const book = {
     author: 'authorId',
@@ -68,11 +45,66 @@ const book = {
     image: 'book.jpg',
     title: 'Book Title',
 };
-
-//'BookElement' factory function creates a book element by passing the 'book' object as an argument. 
+//'BookElement' factory function is used to create a book element by passing the 'book' object as an argument.
 const bookElement = BookElement(book);
 console.log(bookElement);
-// Output: <button class="preview" data-preview="bookId"><img class="preview__image" src="book.jpg"><div class="preview__info"><h3 class="preview__title">Book Title</h3><div class="preview__author">Author Name</div></div></button>  
+ 
+// function BookElementFactory() {
+
+//     const showPreview = (author, id, image, title) => {  
+//         const element = document.createElement('button');
+//         element.classList = 'preview';
+//         element.setAttribute('data-preview', id);
+
+//         const imgElement = document.createElement('img');
+//         imgElement.classList = 'preview__image';
+//         imgElement.src = image;
+//         element.appendChild(imgElement);
+
+//         const infoElement = document.createElement('div');
+//         infoElement.classList = 'preview__info';
+
+//         const titleElement = document.createElement('h3');
+//         titleElement.classList = 'preview__title';
+//         titleElement.innerText = title;
+//         infoElement.appendChild(titleElement);
+
+//         const authorElement = document.createElement('div');
+//         authorElement.classList = 'preview__author';
+//         authorElement.innerText = authors[author];
+//         infoElement.appendChild(authorElement);
+
+//         element.appendChild(infoElement);
+
+//         return element;
+//     }
+//     const hidePreview = () => {
+//         document.querySelector('[data-list-close]').addEventListener('click', () => {
+//             document.querySelector('[data-list-active]').open = false
+//         })
+//     }
+    
+//     const previewElement = {
+//         showPreview,
+//         hidePreview,
+//     }
+//     return previewElement
+// }
+
+// // Usage
+// //the 'BookElement' component and specification of the properties of a book to be rendered by that component.
+// const BookElement = BookElementFactory();
+// const book = {
+//     author: 'authorId',
+//     id: 'bookId',
+//     image: 'book.jpg',
+//     title: 'Book Title',
+// };
+
+// //'BookElement' factory function creates a book element by passing the 'book' object as an argument. 
+// const bookElement = BookElement(book);
+// console.log(bookElement);
+// // Output: <button class="preview" data-preview="bookId"><img class="preview__image" src="book.jpg"><div class="preview__info"><h3 class="preview__title">Book Title</h3><div class="preview__author">Author Name</div></div></button>  
 
 
 //UPDATE FUNCTIONS:
