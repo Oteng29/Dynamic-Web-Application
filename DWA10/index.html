@@ -3,38 +3,35 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link src="./styles.css" rel="stylesheet" href="./node_modules/@shoelace-style/shoelace/dist/shoelace/shoelace.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.5.0/cdn/themes/light.css" />
-    <script type="module"
-        src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.5.0/cdn/shoelace-autoloader.js"></script>
-
-    <title>Tally App</title>
-    <link rel="stylesheet" media="(prefers-color-scheme:light)"
-        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.5.0/cdn/themes/light.css" />
-    <link rel="stylesheet" media="(prefers-color-scheme:dark)"
-        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.5.0/cdn/themes/dark.css"
-        onload="document.documentElement.classList.add('sl-theme-dark');" />
-
+    <title>Tally Count</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
-    <script src="./scripts.js"></script>
 
+    <script src="scripts.js" defer></script>
 </head>
-<header class="header">
-    <h1 class="header_title" >Tally App</h1>
-</header>
 
 <body>
+    <header class="header">
+        <h1 class="header_title" >Tally Count App</h1>
+    </header>
+
     <main class="counter">
+        <input class="counter_value" data-key="number" readonly value="0">
         <div class="counter_actions">
-            <sl-button type="primary" @click="${decrement}" variant="default" size="medium" data-optional="" data-valid="" data-user-valid="">Decrement</sl-button>
-            <sl-button type="primary" @click="${increment}" variant="default" size="medium" data-optional="" data-valid="" data-user-valid="">Increment</sl-button>
+            <sl-button data-key="subtract" class="counter_button counter_button_first">-</sl-button>
+            <sl-button data-key="add" class="counter_button counter_button_second" >+</sl-button>
+            <sl-button data-key="reset" class="counter_button">reset</sl-button>
         </div>
+
+
     </main>
-    <h2>Count: </h2>
-    <input class="counter_value" data-key="number" readonly value="0">
+    <footer class="footer">
+        
+    </footer>
 </body>
-    
+
 </html>

@@ -1,39 +1,49 @@
-import { css, html, customElement, property } from '@shoelace-style/shoelace';
+const MAX_NUMBER = 20;
+const MIN_NUMBER = -10;
+const STEP_AMOUNT = 1;
 
-@customElement('tally-app')
-class TallyApp extends HTMLElement {
-  @property({ type: Number }) count = 0;
+const number = document.querySelector('[data-key="number"]');
+const subtract = document.querySelector('[data-key="subtract"]');
+const reset = document.querySelector('[data-key="reset"]');
+const add = document.querySelector('[data-key="add"]');
 
+const subtractHandler = () => {
+  const newValue = parseInt(number.value) - STEP_AMOUNT;
+  number.value = newValue;
 
-  increment() {
-    this.count++;
+  if (add.disabled === true) {
+    add.disabled = false;
   }
 
-  decrement() {
-    if (this.count > 0) {
-      this.count--;
-    }
+  if (newValue <= MIN_NUMBER) {
+    subtract.disabled = true;
+  }
+};
+
+const addHandler = () => {
+  const newValue = parseInt(number.value) + STEP_AMOUNT;
+  number.value = newValue;
+
+  if (subtract.disabled === true) {
+    subtract.disabled = false;
   }
 
-  reset() {
-    this.count = 0;
-    alert('Counter has been reset.');
+  if (newValue >= MAX_NUMBER) {
+    add.disabled = false;
   }
+};
 
-  render() {
-    return html`
-      <h1>Tally App</h1>
-      <div class="count-display">${this.count}</div>
-      <div class="button-container">
-        <sl-button @click=${this.increment}>Add</sl-button>
-        <sl-button @click=${this.decrement}>Subtract</sl-button>
-        <sl-button @click=${this.reset}>Reset</sl-button>
-      </div>
-    `;
-  }
-}
+const resetHandler = () => {
+  number.value = 0;
+  subtract.disabled = true;
+  add.disabled = false;
+  showConfirmationMessage('The counter has been reset.');
+};
 
-customElements.define('tally-app', TallyApp);
+const showConfirmationMessage = (message) => {
+  alert(message);
+};
 
-const app = document.createElement('tally-app');
-document.body.appendChild(app);
+subtract.addEventListener('click', subtractHandler);
+add.addEventListener('click', addHandler);
+reset.addEventListener('click', resetHandler);

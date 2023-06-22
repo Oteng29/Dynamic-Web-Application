@@ -1,47 +1,112 @@
-.body {
-    display: block;
-    text-align: center;
-    max-width: 400px;
-    margin: 0 auto;
-  }
+:root {
+    --color-dark-blue:#131a28 ;
+    --color-white:#ffffff ;
+    --color-light-blue: #1b2d3a ;
+    --color-medium-blue:#7a7e84 ;
 
-  h1 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
+}
 
-  .count-display {
-    font-size: 3rem;
-    text-align: center;
-  }
+* {
+    box-sizing: border-box;
+}
 
-  .button-container {
+html {
+    height: 100vh;
+}
+
+body {
+    margin: 0;
+    background: var(--color-medium-blue);
+    color: var(--color-white);
+    font-family: Roboto, Arial, Helvetica, sans-serif;
     display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-  }
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%
+}
 
-  .header {
+.header {
     text-align: center;
+}
+
+.controls {
+    background: yellowgreen;
 }
 
 .counter {
-  background: var(--color-dark-blue);
+    background: var(--color-dark-blue);
 }
 
 .counter_value {
-  width: 100%;
-  height: 15rem;
-  text-align: center;
-  font-size: 6rem;
-  font-weight: 900;
-  color: var(--color-white);
-  background: none;
-  border-width: 0;
-  border-bottom: 1px solid var(--color-light-blue);
+    width: 100%;
+    height: 20rem;
+    text-align: center;
+    font-size: 6rem;
+    font-weight: 900;
+    color: var(--color-white);
+    background: none;
+    border-width: 0;
+    border-bottom: 1px solid cornflowerblue;
+    
 }
 
 .counter_actions {
-  display: flex;
+    display: flex;
+    text-align: center;
 }
+
+
+.counter_button {
+    background: none;
+    width: 50%;
+    border-width: 0;
+    color: var(--color-white);
+    font-size: 3rem;
+    height: 10rem;
+    border-bottom: 1px solid cornflowerblue; 
+    transition: transform 0.3s;
+    transform: translateY(0);
+}
+
+.counter_button:disabled {
+    opacity: 0.2
+}
+
+.counter_button:active {
+    background-color: var(--color-medium-blue );
+    transform: translateY(2%);
+}
+
+.counter_button_first {
+    border-right: 1px solid cornflowerblue
+}
+
+.counter_button_second {
+    border-right: 1px solid cornflowerblue
+}
+
+.header_title {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--color-light-blue) ;
+}
+
+.footer {
+    background: var(--color-dark-blue);
+    color: var(--color-light-blue );
+    padding: 4rem;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+
+.confirmation_message {
+    display: none;
+    margin-top: 10px;
+    color: green;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
