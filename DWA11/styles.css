@@ -1,3 +1,12 @@
+@import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.5.0/cdn/themes/dark.css';
+
+body {
+  font: 16px sans-serif;
+  background-color: var(--sl-color-neutral-0);
+  color: var(--sl-color-neutral-900);
+  padding: 1rem;
+}
+
 :root {
     --color-dark-blue:#131a28 ;
     --color-white:#ffffff ;
@@ -46,8 +55,6 @@ body {
     color: var(--color-white);
     background: none;
     border-width: 0;
-    border-bottom: 1px solid cornflowerblue;
-    
 }
 
 .counter_actions {
@@ -62,8 +69,7 @@ body {
     border-width: 0;
     color: var(--color-white);
     font-size: 3rem;
-    height: 10rem;
-    border-bottom: 1px solid cornflowerblue; 
+    height: 4rem; 
     transition: transform 0.3s;
     transform: translateY(0);
 }
@@ -75,14 +81,6 @@ body {
 .counter_button:active {
     background-color: var(--color-medium-blue );
     transform: translateY(2%);
-}
-
-.counter_button_first {
-    border-right: 1px solid cornflowerblue
-}
-
-.counter_button_second {
-    border-right: 1px solid cornflowerblue
 }
 
 .header_title {
