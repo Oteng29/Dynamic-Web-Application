@@ -5,6 +5,7 @@ const MIN_NUMBER = -5;
 const STEP_AMOUNT = 5;
 
 export class TallyCount extends LitElement {
+  //a static `styles` property defines the CSS styles for the component using the `css` helper function from Lit.
   static styles = css`
     :host {
       --color-green: #f49380;
@@ -108,25 +109,31 @@ export class TallyCount extends LitElement {
     }
   `;
 
+  // a properties static property that defines the properties for the component. 
+  // In this case, it defines a single property called count with the type Number.
   static properties = {
     count: { type: Number },
   };
 
+  //constructor initializes the count property to 0.
   constructor() {
     super();
     this.count = 0;
   }
 
+  //subtractHandler method subtracts the STEP_AMOUNT from the count property and requests an update to re-render the component.
   subtractHandler() {
     this.count -= STEP_AMOUNT;
     this.requestUpdate();
   }
 
+  //addHandler method adds the STEP_AMOUNT to the count property and requests an update to re-render the component.
   addHandler() {
     this.count += STEP_AMOUNT;
     this.requestUpdate();
   }
 
+  //The render method returns the HTML template for the component using the html helper function from Lit.
   render() {
     return html`
       <div class="header">
@@ -165,4 +172,5 @@ export class TallyCount extends LitElement {
   }
 }
 
+//The `customElements.define` method is used to register the TallyCount custom element with the name 'tally-count'. 
 customElements.define('tally-count', TallyCount);
